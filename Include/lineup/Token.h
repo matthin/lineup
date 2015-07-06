@@ -6,10 +6,12 @@
 namespace lu {
 
 enum struct Operation {
-  H1
+  H1,
+  H2,
+  H3
 };
 const std::map<Operation, const char*> operationToText = {
-  {Operation::H1, "H1"}
+  {Operation::H1, "H1"}, {Operation::H2, "H3"}, {Operation::H3, "H3"}
 };
 
 class Token {

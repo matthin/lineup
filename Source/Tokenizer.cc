@@ -16,9 +16,21 @@ std::vector<Token> Tokenizer::tokenize(const std::string& markdown) const {
   std::string line;
   while (std::getline(stream, line)) {
     if (line.at(0) == '#') {
-      tokens.push_back(
-        Token(Operation::H1, line.substr(1))
-      );
+      if (line.at(1) == '#') {
+        if (line.at(2) == '#') {
+          tokens.push_back(
+            Token(Operation::H3, line.substr(3))
+          );
+        } else {
+          tokens.push_back(
+            Token(Operation::H2, line.substr(2))
+          );
+        }
+      } else {
+        tokens.push_back(
+          Token(Operation::H1, line.substr(1))
+        );
+      }
     }
   }
 
