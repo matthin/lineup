@@ -1,18 +1,19 @@
 #pragma once
 
+#include <string>
 #include <vector>
 
 #include "Token.h"
 
 namespace lu {
 
-class Compiler {
+class Parser {
 public:
-  Compiler(const std::vector<Token> tokens);
+  Parser(const std::string& markdown);
   std::string toHTML() const;
 
 private:
-  const std::vector<Token> tokens;
+  std::vector<Token> tokens;
 };
 
 } // namespace lu

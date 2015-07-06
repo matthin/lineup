@@ -2,14 +2,21 @@
 
 namespace lu {
 
-Compiler::Compiler(const std::string& markdown) : html(toHTML(markdown)) {
+Compiler::Compiler(const std::vector<Token> tokens)
+    : tokens(tokens){
 
 }
 
-std::string Compiler::toHTML(const std::string& markdown) const {
-  if (markdown.at(0) == '#') {
-    return "<h1>" + markdown.substr(1) + "</h1>";
+std::string Compiler::toHTML() const {
+  std::string html;
+
+  for (auto token : tokens) {
+    if (token.operation == Operation::H1) {
+      html += "<h1>" + token.text + "</h1>";
+    }
   }
+
+  return html;
 }
 
 } // namespace lu
