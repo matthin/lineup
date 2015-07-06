@@ -9,11 +9,12 @@ enum struct Operation {
   H1,
   H2,
   H3,
-  LI
+  OL,
+  UL
 };
 const std::map<Operation, const char*> operationToText = {
   {Operation::H1, "H1"}, {Operation::H2, "H3"}, {Operation::H3, "H3"},
-  {Operation::LI, "LI"}
+  {Operation::OL, "OL"}, {Operation::UL, "UL"}
 };
 
 class Token {

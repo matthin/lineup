@@ -31,9 +31,16 @@ std::vector<Token> Tokenizer::tokenize(const std::string& markdown) const {
           Token(Operation::H1, line.substr(1))
         );
       }
+    } else if (
+        // I need to automatically check if the char is numeric.
+        (line.at(0) == '1' || line.at(0) == '2') && line.at(1) == '.'
+    ) {
+      tokens.push_back(
+        Token(Operation::OL, line.substr(2))
+      );
     } else if (line.at(0) == '*') {
       tokens.push_back(
-        Token(Operation::LI, line.substr(1))
+        Token(Operation::UL, line.substr(1))
       );
     }
   }
