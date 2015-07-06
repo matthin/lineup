@@ -31,6 +31,10 @@ std::vector<Token> Tokenizer::tokenize(const std::string& markdown) const {
           Token(Operation::H1, line.substr(1))
         );
       }
+    } else if (line.at(0) == '*') {
+      tokens.push_back(
+        Token(Operation::LI, line.substr(1))
+      );
     }
   }
 
