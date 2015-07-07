@@ -12,3 +12,15 @@ TEST_CASE("Compiles headers") {
   );
 }
 
+TEST_CASE("Compiles ordered list") {
+  const lu::Compiler compiler(std::vector<lu::Token> {
+    {lu::Token(lu::Operation::OL, " Example one")},
+    {lu::Token(lu::Operation::OL, " Example two")},
+    {lu::Token(lu::Operation::OL, " Example three")}
+  });
+  REQUIRE(
+    compiler.toHTML() == "<ol><li> Example one</li><li> Example two</li>"
+                         "<li> Example three</li></ol>"
+  );
+}
+
