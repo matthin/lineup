@@ -42,6 +42,10 @@ std::vector<Token> Tokenizer::tokenize(const std::string& markdown) const {
       tokens.push_back(
         Token(Operation::UL, line.substr(1))
       );
+    } else {
+      tokens.push_back(
+        Token(Operation::P, line)
+      );
     }
   }
 
