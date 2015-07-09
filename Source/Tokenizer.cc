@@ -1,5 +1,6 @@
 #include "Tokenizer.h"
 
+#include <cctype>
 #include <sstream>
 
 namespace lu {
@@ -57,10 +58,7 @@ Operation Tokenizer::detectType(const std::string& line) const {
     } else {
       type = Operation::H1;
     }
-  } else if (
-      // I need to automatically check if the char is numeric.
-      (line.at(0) == '1' || line.at(0) == '2') && line.at(1) == '.'
-  ) {
+  } else if (isOrderedList(line)) {
     type = Operation::OL;
   } else if (line.at(0) == '*') {
     type = Operation::UL;
@@ -69,6 +67,23 @@ Operation Tokenizer::detectType(const std::string& line) const {
   }
 
   return type;
+}
+
+bool Tokenizer::isOrderedList(const std::string& line) const {
+  if (!std::isdigit(line.at(0))) {
+    return false;
+  }
+
+  bool prevIsDigit = false;
+  for (const auto character : line) {
+    if (std::isdigit(character)) {
+      prevIsDigit = true;
+    } else if (prevIsDigit && character == '.') {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 } // namespace lu

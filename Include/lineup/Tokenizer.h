@@ -15,6 +15,7 @@ public:
 
 private:
   Operation detectType(const std::string& line) const;
+  bool isOrderedList(const std::string& line) const;
 };
 
 } // namespace lu
