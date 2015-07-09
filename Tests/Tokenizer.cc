@@ -50,14 +50,22 @@ TEST_CASE("Tokenizes lists") {
   );
 }
 
-TEST_CASE("Tokenizes a paragraph") {
+TEST_CASE("Tokenizes paragraphs") {
   const lu::Tokenizer tokenizer(
     "First sentance.\n"
-    " Second sentance."
+    " Second sentance.\n\n"
+    "Second paragraph."
   );
   const auto tokens = std::vector<lu::Token> {
-    {lu::Token(lu::Operation::P, "First sentance.")},
-    {lu::Token(lu::Operation::P, " Second sentance.")}
+    lu::Token(
+      lu::Operation::P, "First sentance. Second sentance."
+    ),
+    lu::Token(
+      lu::Operation::Blank, ""
+    ),
+    lu::Token(
+      lu::Operation::P, "Second paragraph."
+    ),
   };
   REQUIRE(
     tokenizer.tokens == tokens

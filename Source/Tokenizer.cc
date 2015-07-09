@@ -37,6 +37,17 @@ std::vector<Token> Tokenizer::tokenize(const std::string& markdown) const {
     case Operation::P:
       text = line;
       break;
+    case Operation::Blank:
+      text = "";
+      break;
+    }
+
+    if (tokens.size() > 0) {
+      const auto prevToken = tokens.back();
+      if (type == Operation::P && prevToken.operation == Operation::P) {
+        text = prevToken.text + text;
+        tokens.pop_back();
+      }
     }
 
     tokens.push_back(Token(type, text));
@@ -48,7 +59,9 @@ std::vector<Token> Tokenizer::tokenize(const std::string& markdown) const {
 Operation Tokenizer::detectType(const std::string& line) const {
   Operation type;
 
-  if (line.at(0) == '#') {
+  if (line.empty()) {
+    type = Operation::Blank;
+  } else if (line.at(0) == '#') {
     if (line.at(1) == '#') {
       if (line.at(2) == '#') {
         type = Operation::H3;
