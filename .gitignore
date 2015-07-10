@@ -1,5 +1,7 @@
 build/
 
+*.pyc
+
 # Vim
 *.swp
 
