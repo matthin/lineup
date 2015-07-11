@@ -15,6 +15,12 @@ private:
   const std::vector<Token> tokens;
   int compileList(
     std::string* html, const Token& token, Operation listType
+  ) const {
+    return compileList(html, token, listType, tokens);
+  }
+  int compileList(
+    std::string* html, const Token& token, Operation listType,
+    const std::vector<Token>& tokens
   ) const;
 };
 

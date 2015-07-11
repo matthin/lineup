@@ -27,3 +27,18 @@ TEST_CASE("Compiles lists") {
   );
 }
 
+TEST_CASE("Compiles sub-lists") {
+  lu::Token token(lu::Operation::OL, " Example one");
+  token.childTokens = new std::vector<lu::Token>;
+  token.childTokens->push_back(
+    lu::Token(lu::Operation::OL, " Example two")
+  );
+  const lu::Compiler compiler(std::vector<lu::Token> {
+    token
+  });
+  REQUIRE(
+    compiler.toHTML() == "<ol><li> Example one<ol><li> Example two</li></ol>"
+                         "</li></ol>"
+  );
+}
+

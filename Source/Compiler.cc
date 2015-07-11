@@ -38,7 +38,8 @@ std::string Compiler::toHTML() const {
 }
 
 int Compiler::compileList(
-  std::string* html, const Token& token, Operation listType
+  std::string* html, const Token& token, Operation listType,
+  const std::vector<Token>& tokens
 ) const {
   switch (listType) {
   case Operation::OL:
@@ -58,7 +59,15 @@ int Compiler::compileList(
   for (int i = startPos, length = tokens.size(); i < length; ++i) {
     const auto& nextToken = tokens.at(i);
     if (nextToken.operation == listType) {
-      *html += + "<li>" + nextToken.text + "</li>";
+      *html += + "<li>" + nextToken.text;
+      if (token.childTokens != nullptr) {
+        for (const auto& childToken : *(token.childTokens)) {
+          compileList(
+            html, childToken, childToken.operation, *(token.childTokens)
+          );
+        }
+      }
+      *html += "</li>";
     } else {
       numberOfItems = i;
       break;
