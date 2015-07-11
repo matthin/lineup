@@ -50,6 +50,23 @@ TEST_CASE("Tokenizes lists") {
   );
 }
 
+TEST_CASE("Tokenizes sub-lists") {
+  const lu::Tokenizer tokenizer(
+    "1. Example one\n"
+    "    1. Example two"
+  );
+  lu::Token token(lu::Operation::OL, " Example one");
+  token.childTokens = new std::vector<lu::Token>;
+  token.childTokens->push_back(
+    lu::Token(lu::Operation::OL, " Example two")
+  );
+  REQUIRE(
+    tokenizer.tokens == std::vector<lu::Token> {
+      {token}
+    }
+  );
+}
+
 TEST_CASE("Tokenizes paragraphs") {
   const lu::Tokenizer tokenizer(
     "First sentance.\n"

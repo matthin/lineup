@@ -13,7 +13,7 @@ std::string Compiler::toHTML() const {
   std::string html;
 
   for (int i = 0, length = tokens.size(); i < length; ++i) {
-    const auto token = tokens.at(i);
+    const auto& token = tokens.at(i);
     switch (token.operation) {
     case Operation::H1:
       html += "<h1>" + token.text + "</h1>";
@@ -56,7 +56,7 @@ int Compiler::compileList(
   ) - tokens.begin();
   int numberOfItems;
   for (int i = startPos, length = tokens.size(); i < length; ++i) {
-    const auto nextToken = tokens.at(i);
+    const auto& nextToken = tokens.at(i);
     if (nextToken.operation == listType) {
       *html += + "<li>" + nextToken.text + "</li>";
     } else {

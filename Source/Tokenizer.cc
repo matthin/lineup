@@ -29,7 +29,7 @@ std::vector<Token> Tokenizer::tokenize(const std::string& markdown) const {
       text = line.substr(3);
       break;
     case Operation::OL:
-      text = line.substr(2);
+      text = line.substr(line.find('.') + 1);
       break;
     case Operation::UL:
       text = line.substr(1);
@@ -43,10 +43,23 @@ std::vector<Token> Tokenizer::tokenize(const std::string& markdown) const {
     }
 
     if (tokens.size() > 0) {
-      const auto prevToken = tokens.back();
+      auto& prevToken = tokens.back();
       if (type == Operation::P && prevToken.operation == Operation::P) {
         text = prevToken.text + text;
         tokens.pop_back();
+      } else if (
+        isOperationAList(type) && isOperationAList(prevToken.operation)
+      ) {
+        if (line.substr(0, 4) == "    ") {
+
+          if (!prevToken.childTokens) {
+            prevToken.childTokens = new std::vector<Token>;
+          }
+          prevToken.childTokens->push_back(
+            Token(Operation::OL, text)
+          );
+          continue;
+        }
       }
     }
 
@@ -83,7 +96,7 @@ Operation Tokenizer::detectType(const std::string& line) const {
 }
 
 bool Tokenizer::isOrderedList(const std::string& line) const {
-  if (!std::isdigit(line.at(0))) {
+  if (!std::isdigit(line.at(0)) && line.at(0) != ' ') {
     return false;
   }
 
