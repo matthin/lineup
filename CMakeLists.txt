@@ -13,6 +13,9 @@ add_library(
 ADD_DEFINITIONS(-std=c++11)
 SET(CMAKE_EXE_LINKER_FLAGS "-pthread")
 
+add_executable(lineupApp Source/main.cc)
+target_link_libraries(lineupApp lineup)
+
 add_subdirectory(Tests)
 enable_testing()
 add_test(NAME Test COMMAND Test)
