@@ -42,3 +42,13 @@ TEST_CASE("Compiles sub-lists") {
   );
 }
 
+TEST_CASE("Compiles paragraphs") {
+  const lu::Compiler compiler(std::vector<lu::Token> {
+    lu::Token(lu::Operation::P, "First paragraph"),
+    lu::Token(lu::Operation::P, "Second paragraph")
+  });
+  REQUIRE(
+    compiler.toHTML() == "<p>First paragraph</p><p>Second paragraph</p>"
+  );
+}
+

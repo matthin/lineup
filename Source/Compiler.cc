@@ -28,6 +28,9 @@ std::string Compiler::toHTML() const {
     case Operation::UL:
       i += compileList(&html, token, token.operation) - 1;
       break;
+    case Operation::P:
+      html += "<p>" + token.text + "</p>";
+      break;
     default:
       // Should log a message saying the operation isn't supported yet.
       break;
