@@ -15,3 +15,5 @@ production ready yet.
 * C++11 compatible compiler
 * CMake v2.8+
 
+It's confirmed to work with Ubuntu 15.04 (Clang 3.5).
+
