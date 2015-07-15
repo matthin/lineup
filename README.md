@@ -6,6 +6,7 @@ production ready yet.
 * Headers (# -> h1, ## -> h2, ### -> h3)
 * Ordered and unordered lists
   * Nested lists 1 level deep.
+* Basic paragraphs
 
 # Contributors
 * Try to keep line widths less than 80.
