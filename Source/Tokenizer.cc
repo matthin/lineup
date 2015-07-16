@@ -28,6 +28,15 @@ std::vector<Token> Tokenizer::tokenize(const std::string& markdown) const {
     case Operation::H3:
       text = line.substr(3);
       break;
+    case Operation::H4:
+      text = line.substr(4);
+      break;
+    case Operation::H5:
+      text = line.substr(5);
+      break;
+    case Operation::H6:
+      text = line.substr(6);
+      break;
     case Operation::OL:
       text = line.substr(line.find('.') + 1);
       break;
@@ -77,7 +86,19 @@ Operation Tokenizer::detectType(const std::string& line) const {
   } else if (line.at(0) == '#') {
     if (line.at(1) == '#') {
       if (line.at(2) == '#') {
-        type = Operation::H3;
+        if (line.at(3) == '#') {
+          if (line.at(4) == '#') {
+            if (line.at(5) == '#') {
+              type = Operation::H6;
+            } else {
+              type = Operation::H5;
+            }
+          } else {
+            type = Operation::H4;
+          }
+        } else {
+          type = Operation::H3;
+        }
       } else {
         type = Operation::H2;
       }

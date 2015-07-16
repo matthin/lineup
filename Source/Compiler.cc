@@ -24,6 +24,15 @@ std::string Compiler::toHTML() const {
     case Operation::H3:
       html += "<h3>" + token.text + "</h3>";
       break;
+    case Operation::H4:
+      html += "<h4>" + token.text + "</h4>";
+      break;
+    case Operation::H5:
+      html += "<H5>" + token.text + "</h5>";
+      break;
+    case Operation::H6:
+      html += "<h6>" + token.text + "</h6>";
+      break;
     case Operation::OL:
     case Operation::UL:
       i += compileList(&html, token, token.operation) - 1;

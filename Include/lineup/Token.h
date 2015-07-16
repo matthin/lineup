@@ -10,6 +10,9 @@ enum struct Operation {
   H1,
   H2,
   H3,
+  H4,
+  H5,
+  H6,
   OL,
   UL,
   P,
@@ -17,6 +20,7 @@ enum struct Operation {
 };
 const std::map<Operation, const char*> operationToText = {
   {Operation::H1, "H1"}, {Operation::H2, "H3"}, {Operation::H3, "H3"},
+  {Operation::H4, "H4"}, {Operation::H5, "H5"}, {Operation::H6, "H6"},
   {Operation::OL, "OL"}, {Operation::UL, "UL"}, {Operation::P, "P"},
   {Operation::Blank, "Blank"}
 };
