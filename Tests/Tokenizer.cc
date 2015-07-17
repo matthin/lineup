@@ -27,16 +27,18 @@ TEST_CASE("Tokenizes headers") {
 TEST_CASE("Tokenizes lists") {
   const lu::Tokenizer tokenizer(
     "* Example one\n"
-    "* Example two\n"
-    "1. Example three\n"
-    "2. Example four"
+    "+ Example two\n"
+    "- Example three\n"
+    "1. Example four\n"
+    "2. Example five"
   );
   // Can't directly pass in vector literal with multiple elements.
   const auto tokens = std::vector<lu::Token> {
     {lu::Token(lu::Operation::UL, " Example one")},
     {lu::Token(lu::Operation::UL, " Example two")},
-    {lu::Token(lu::Operation::OL, " Example three")},
-    {lu::Token(lu::Operation::OL, " Example four")}
+    {lu::Token(lu::Operation::UL, " Example three")},
+    {lu::Token(lu::Operation::OL, " Example four")},
+    {lu::Token(lu::Operation::OL, " Example five")}
   };
   REQUIRE(
     tokenizer.tokens == tokens

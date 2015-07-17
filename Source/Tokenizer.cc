@@ -107,7 +107,7 @@ Operation Tokenizer::detectType(const std::string& line) const {
     }
   } else if (isOrderedList(line)) {
     type = Operation::OL;
-  } else if (line.at(0) == '*') {
+  } else if (line.at(0) == '*' || line.at(0) == '+' || line.at(0) == '-') {
     type = Operation::UL;
   } else {
     type = Operation::P;

@@ -4,7 +4,7 @@ production ready yet.
 
 # Support
 * Headers (1 [#] through 6 [######])
-* Ordered and unordered lists
+* Ordered and unordered [*, +, -] lists
   * Nested lists 1 level deep.
 * Basic paragraphs
 
