@@ -85,7 +85,9 @@ std::string Compiler::createElement(
   const Operation operation, const std::string& innerText
 ) const {
   auto operationAsText = operationToText.at(operation);
-  return "<" + std::string(operationAsText) + ">" + innerText + "</" + operationAsText + ">";
+  std::string openingTag("<" + std::string(operationAsText) + ">");
+  std::string closingTag("</" + std::string(operationAsText) + ">");
+  return openingTag + innerText + closingTag;
 }
 
 } // namespace lu
