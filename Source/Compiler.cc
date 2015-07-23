@@ -67,7 +67,7 @@ int Compiler::compileList(
   const auto startPos = std::find(
     tokens.begin(), tokens.end(), token
   ) - tokens.begin();
-  int numberOfItems;
+  int numberOfItems = tokens.size();
   for (int i = startPos, length = tokens.size(); i < length; ++i) {
     const auto& nextToken = tokens.at(i);
     if (nextToken.operation == listType) {
