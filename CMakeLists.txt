@@ -3,6 +3,7 @@ project(lineup CXX)
 
 add_subdirectory(Source)
 include_directories(Include/lineup)
+include_directories(opt/catch/include)
 
 add_library(
   lineup

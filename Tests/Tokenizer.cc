@@ -1,6 +1,6 @@
 #include <vector>
 
-#include "Catch.hpp"
+#include "catch.hpp"
 #include "Token.h"
 #include "Tokenizer.h"
 

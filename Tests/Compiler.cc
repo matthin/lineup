@@ -1,4 +1,4 @@
-#include "Catch.hpp"
+#include "catch.hpp"
 #include "Compiler.h"
 
 TEST_CASE("Compiles headers") {
