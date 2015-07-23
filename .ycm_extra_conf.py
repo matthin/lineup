@@ -15,7 +15,9 @@ flags = [
     '-I',
     '.',
     '-I',
-    'Include/lineup'
+    'include/lineup',
+    '-I',
+    'opt/catch/include'
 ]
 
 SOURCE_EXTENSIONS = ['.cpp', '.cc', '.c']
