@@ -22,6 +22,9 @@ private:
     std::string* html, const Token& token, Operation listType,
     const std::vector<Token>& tokens
   ) const;
+  std::string createElement(
+    Operation operation, const std::string& innerText
+  ) const;
 };
 
 } // namespace lu

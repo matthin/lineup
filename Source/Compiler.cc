@@ -15,33 +15,14 @@ std::string Compiler::toHTML() const {
   for (int i = 0, length = tokens.size(); i < length; ++i) {
     const auto& token = tokens.at(i);
     switch (token.operation) {
-    case Operation::H1:
-      html += "<h1>" + token.text + "</h1>";
-      break;
-    case Operation::H2:
-      html += "<h2>" + token.text + "</h2>";
-      break;
-    case Operation::H3:
-      html += "<h3>" + token.text + "</h3>";
-      break;
-    case Operation::H4:
-      html += "<h4>" + token.text + "</h4>";
-      break;
-    case Operation::H5:
-      html += "<H5>" + token.text + "</h5>";
-      break;
-    case Operation::H6:
-      html += "<h6>" + token.text + "</h6>";
-      break;
     case Operation::OL:
     case Operation::UL:
       i += compileList(&html, token, token.operation) - 1;
       break;
-    case Operation::P:
-      html += "<p>" + token.text + "</p>";
+    case Operation::Blank:
       break;
     default:
-      // Should log a message saying the operation isn't supported yet.
+      html += createElement(token.operation, token.text);
       break;
     }
   }
@@ -98,6 +79,13 @@ int Compiler::compileList(
   }
 
   return numberOfItems;
+}
+
+std::string Compiler::createElement(
+  const Operation operation, const std::string& innerText
+) const {
+  auto operationAsText = operationToText.at(operation);
+  return "<" + std::string(operationAsText) + ">" + innerText + "</" + operationAsText + ">";
 }
 
 } // namespace lu
