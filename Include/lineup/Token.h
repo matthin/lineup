@@ -19,10 +19,10 @@ enum struct Operation {
   Blank
 };
 const std::map<Operation, const char*> operationToText = {
-  {Operation::H1, "H1"}, {Operation::H2, "H3"}, {Operation::H3, "H3"},
-  {Operation::H4, "H4"}, {Operation::H5, "H5"}, {Operation::H6, "H6"},
-  {Operation::OL, "OL"}, {Operation::UL, "UL"}, {Operation::P, "P"},
-  {Operation::Blank, "Blank"}
+  {Operation::H1, "h1"}, {Operation::H2, "h2"}, {Operation::H3, "h3"},
+  {Operation::H4, "h4"}, {Operation::H5, "h5"}, {Operation::H6, "h6"},
+  {Operation::OL, "ol"}, {Operation::UL, "ul"}, {Operation::P, "p"},
+  {Operation::Blank, "blank"}
 };
 bool isOperationAList(const Operation operation);
 
