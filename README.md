@@ -1,4 +1,7 @@
 # lineup
+[![Build Status](https://travis-ci.org/matthin/lineup.png?branch=master)]
+(https://travis-ci.org/matthin/lineup)
+
 Prototype of a markdown parser in C++. It's not anywhere close to being
 production ready yet.
 
