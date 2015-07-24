@@ -84,9 +84,9 @@ int Compiler::compileList(
 std::string Compiler::createElement(
   const Operation operation, const std::string& innerText
 ) const {
-  auto operationAsText = operationToText.at(operation);
-  std::string openingTag("<" + std::string(operationAsText) + ">");
-  std::string closingTag("</" + std::string(operationAsText) + ">");
+  const auto operationAsText = operationToText.at(operation);
+  const std::string openingTag("<" + std::string(operationAsText) + ">");
+  const std::string closingTag("</" + std::string(operationAsText) + ">");
   return openingTag + innerText + closingTag;
 }
 
